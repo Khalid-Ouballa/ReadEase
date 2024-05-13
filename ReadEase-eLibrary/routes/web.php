@@ -25,8 +25,10 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))
         ->name('dashboard');
-    Route::get('/leaderBoard', fn() => Inertia::render('LeaderBoard'))
-        ->name('leaderBoard');
+    // Route::get('/leaderBoard', fn() => Inertia::render('LeaderBoard'))
+    //     ->name('leaderBoard');
+    Route::get('/LeaderBoard',[ BooklistController::class,'show'])
+    ->name('leaderBoard');
     Route::resource('book', BookController::class);
     Route::resource('booklist', BooklistController::class);
     Route::resource('user', UserController::class);
