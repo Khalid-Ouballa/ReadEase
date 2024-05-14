@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Booklist;
 use App\Http\Requests\StoreBooklistRequest;
 use App\Http\Requests\UpdateBooklistRequest;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\Book;
+use Inertia\Inertia;
 
 class BooklistController extends Controller
 {
@@ -51,7 +55,21 @@ class BooklistController extends Controller
      */
     public function show(Booklist $booklist)
     {
+        $usersWithReadBooksCount = User::select( 'users.name',
+        DB::raw('COUNT(booklists.book_id) as books_read'),
+        DB::raw('SUM(booklists.progress) as total_pages_read')
+                 )
+      ->leftJoin('booklists', 'users.id', '=', 'booklists.user_id')
+      ->where('booklists.status', 'completed')
+      ->groupBy( 'users.name')
+      ->orderByDesc('total_pages_read')
+      ->orderByDesc('books_read')
+      ->get();
 
+ return Inertia::render('LeaderBoard', [
+     'usersWithReadBooksCount' =>  $usersWithReadBooksCount
+
+ ]);
     }
 
     /**
