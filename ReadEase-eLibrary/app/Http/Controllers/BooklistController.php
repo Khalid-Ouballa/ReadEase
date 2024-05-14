@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booklist;
 use App\Http\Requests\StoreBooklistRequest;
 use App\Http\Requests\UpdateBooklistRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BooklistController extends Controller
 {
@@ -19,6 +20,11 @@ class BooklistController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // public function create()
+    // {
+    //     //
+    // }
+
     public function create()
     {
         //
@@ -29,7 +35,15 @@ class BooklistController extends Controller
      */
     public function store(StoreBooklistRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $data['user_id'] = Auth::id();
+        $data['book_id'] = 1;
+        $data['status'] = "not_started";
+        $data['progress'] = 0;
+        Booklist::create($data);
+
+        return route('book.index');
     }
 
     /**
@@ -37,7 +51,7 @@ class BooklistController extends Controller
      */
     public function show(Booklist $booklist)
     {
-        //
+
     }
 
     /**

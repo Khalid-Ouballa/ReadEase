@@ -1,0 +1,12 @@
+.activebg {
+    background-color: hsl(230deg 100% 94.76%);
+}
+
+.pagcolor {
+    opacity: 0.8;
+    color: hsl(230, 62%, 56%);
+}
+
+.hover\:active:hover {
+    background-color: hsl(230deg 100% 94.76%);
+}

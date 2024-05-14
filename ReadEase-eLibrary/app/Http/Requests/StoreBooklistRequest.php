@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreBooklistRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreBooklistRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,10 @@ class StoreBooklistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "user_id" => ['required'],
+            "book_id" => ['required'],
+            "status" => ['required', Rule::in(['completed', 'in_progress', 'not_started'])],
+            "progress" => ['required']
         ];
     }
 }

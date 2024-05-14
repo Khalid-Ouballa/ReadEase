@@ -17,12 +17,12 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(3),
-            'author' => fake()->sentence(2),
-            'description' => fake()->realText(),
+            'name' => implode(' ', array_slice(fake()->words(), 0, 3)),
+            'author' => implode(' ', array_slice(fake()->words(), 0, 2)),
+            'description' => fake()->paragraphs(4, true),
             'category' => fake()->randomElement(['philosophy', 'history', 'biography', 'business', 'adventure', 'fantasy']),
-            'image_path' => '../../resources/images/books/img' . str_pad(rand(1, 38), 2, '0', STR_PAD_LEFT) . '.jpg',
-            'pdf_path' => '../../resources/images/pdfs/book' . str_pad(rand(1, 10), 2, '0', STR_PAD_LEFT) . '.pdf',
+            'image_path' => 'books/img' . str_pad(rand(1, 38), 2, '0', STR_PAD_LEFT) . '.jpg',
+            'pdf_path' => 'pdfs/book' . str_pad(rand(1, 10), 2, '0', STR_PAD_LEFT) . '.pdf',
             'language' => fake()->randomElement(['arabic', 'english', 'spanish', 'french', 'german']),
             'number_of_pages' => fake()->numberBetween(100, 500)
         ];

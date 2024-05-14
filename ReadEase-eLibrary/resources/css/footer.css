@@ -109,6 +109,10 @@
   column-gap: 1.25rem;
 }
 
+.footer__social a i {
+    color: hsl(230deg 27.47% 79.34%);
+}
+
 .footer__social-link {
   font-size: 1.25rem;
   color: var(--first-color);

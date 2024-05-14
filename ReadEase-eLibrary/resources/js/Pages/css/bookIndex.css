@@ -1,0 +1,134 @@
+img {
+    width: 100%;
+    display: block;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-sb {
+    justify-content: space-between;
+}
+
+.flex-c {
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+}
+
+.book-details {
+    padding: 3rem 0;
+    background-color: #f8f9fa;
+}
+
+.book-item {
+    padding: 25px 20px;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
+    transition: all 300ms ease-in-out;
+}
+
+.book-item:hover {
+    box-shadow: hsl(230deg 100% 79.67%) 0px 5px 15px 0px;
+    cursor: pointer;
+}
+
+.book-item-img img {
+    max-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stit {
+    color: hsl(230, 70%, 16%);
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.book-item-info {
+    margin-top: 14px;
+}
+
+.book-item-info-item.title {
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+}
+
+.book-item-info-item.author {
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.book-item-info-item.category {
+    opacity: 0.6;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.booklist-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+@media screen and (min-width: 992px) {
+    .book-item-img img {
+        max-width: 120px;
+    }
+}
+
+.filtersContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    padding: 0 0 30px;
+}
+
+.allInputs {
+    padding: 10px;
+    border-radius: 25px;
+    border-color: hsl(230, 62%, 56%);
+    color: hsl(230, 16%, 45%);
+    border-width: 1px;
+}
+
+#allInputs {
+    border: 1px solid hsl(230, 62%, 56%);
+    border-radius: 25px;
+    color: hsl(230, 62%, 56%);
+    padding: 10px;
+}
+
+#allInputs::placeholder {
+    color: hsl(230, 16%, 45%);
+}
+
+.filterSpan {
+    font-size: 27px;
+    font-weight: 700;
+    color: hsl(230deg 75.09% 29.02%);
+    padding-left: 8px;
+    display: block;
+    margin-bottom: 11px;
+}
+
+.tit {
+    font-size: 18px;
+    font-weight: 800;
+    color: hsl(230deg 86.35% 33.32%);
+}
