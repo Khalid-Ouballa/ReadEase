@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Booklist;
-use App\Http\Requests\StoreBooklistRequest;
-use App\Http\Requests\UpdateBooklistRequest;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Inertia\Inertia;
+
 
 class BooklistController extends Controller
 {
@@ -37,17 +36,21 @@ class BooklistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBooklistRequest $request)
+    public function store(Book $book)
     {
-        $data = $request->validated();
+        $user = Auth::user();
 
-        $data['user_id'] = Auth::id();
-        $data['book_id'] = 1;
-        $data['status'] = "not_started";
-        $data['progress'] = 0;
-        Booklist::create($data);
+    if ($user->booklists()->where('book_id', $book->id)->exists()) {
+        return redirect()->back()->with('message', 'Book already in the list.');
+    }
 
-        return route('book.index');
+    $user->booklists()->create([
+        'book_id' => $book->id,
+        'status' => 'not_started',
+        'progress' => 0,
+    ]);
+
+    return to_route('book.index');
     }
 
     /**

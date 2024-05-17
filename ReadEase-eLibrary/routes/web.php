@@ -9,15 +9,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
 Route::get('/', function () {
     return Inertia::render('Homepage');
 })->name('Homepage');
@@ -25,15 +16,17 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))
         ->name('dashboard');
-    // Route::get('/leaderBoard', fn() => Inertia::render('LeaderBoard'))
-    //     ->name('leaderBoard');
-    Route::get('/LeaderBoard',[ BooklistController::class,'show'])
-    ->name('leaderBoard');
+
+    Route::get('/LeaderBoard', [BooklistController::class, 'show'])
+        ->name('leaderBoard');
+
     Route::resource('book', BookController::class);
     Route::resource('booklist', BooklistController::class);
     Route::resource('user', UserController::class);
-});
 
+    Route::post('/booklist/store/{book}', [BooklistController::class, 'store'])
+        ->name('booklist.store');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,4 +35,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
