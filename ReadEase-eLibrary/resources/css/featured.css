@@ -1,10 +1,15 @@
 button {
-  display: inline-block;
-  background-color: var(--first-color);
-  color: var(--white-color);
-  font-weight: 600;
-  padding: 1rem 1.5rem;
-  transition: box-shadow .4s;
+    display: inline-block;
+    background-color: var(--first-color);
+    color: var(--white-color);
+    font-weight: 600;
+    padding: 15px 24px;
+    border-radius: 30px;
+    transition: box-shadow .4s;
+}
+
+button:hover {
+    opacity: 0.8;
 }
 
 .swiper-button-prev,
@@ -33,7 +38,7 @@ button {
 }
 
 .featured__title {
-  font-size: var(--h2-font-size);
+  font-size: 27px;
   margin-bottom: .5rem;
 }
 

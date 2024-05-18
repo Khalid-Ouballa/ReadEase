@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BooklistController;
@@ -23,14 +24,13 @@ Route::get('/', function () {
 })->name('Homepage');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn() => Inertia::render('Dashboard'))
+    Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-    // Route::get('/leaderBoard', fn() => Inertia::render('LeaderBoard'))
-    //     ->name('leaderBoard');
-    Route::get('/LeaderBoard',[ BooklistController::class,'show'])
-    ->name('leaderBoard');
+    Route::get('/LeaderBoard', [BooklistController::class, 'show'])
+        ->name('leaderBoard');
     Route::resource('book', BookController::class);
     Route::resource('booklist', BooklistController::class);
+    Route::delete('/dashboard/{id}', [BooklistController::class, 'destroy'])->name('booklist.destroy');
     Route::resource('user', UserController::class);
 });
 

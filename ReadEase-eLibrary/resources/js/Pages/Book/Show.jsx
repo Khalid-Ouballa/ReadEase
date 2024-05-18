@@ -49,7 +49,7 @@ export default function Show({ auth, book}) {
                               <span className="">{book.description}</span>
                             </div>
                             <div className="detailButton">
-                            <Link href={route('booklist.store')}>
+                            <Link href={route("booklist.store")}>
                                 <button>Add to List</button>
                           </Link>
                           </div>
