@@ -61,18 +61,17 @@ class BooklistController extends Controller
         $usersWithReadBooksCount = User::select( 'users.name',
         DB::raw('COUNT(booklists.book_id) as books_read'),
         DB::raw('SUM(booklists.progress) as total_pages_read')
-                 )
-      ->leftJoin('booklists', 'users.id', '=', 'booklists.user_id')
-      ->where('booklists.status', 'completed')
-      ->groupBy( 'users.name')
-      ->orderByDesc('total_pages_read')
-      ->orderByDesc('books_read')
-      ->get();
+        )
+        ->leftJoin('booklists', 'users.id', '=', 'booklists.user_id')
+        ->where('booklists.status', 'completed')
+        ->groupBy( 'users.name')
+        ->orderByDesc('total_pages_read')
+        ->orderByDesc('books_read')
+        ->get();
 
- return Inertia::render('LeaderBoard', [
-     'usersWithReadBooksCount' =>  $usersWithReadBooksCount
-
- ]);
+    return Inertia::render('LeaderBoard', [
+    'usersWithReadBooksCount' =>  $usersWithReadBooksCount
+    ]);
     }
 
     /**
@@ -96,6 +95,7 @@ class BooklistController extends Controller
      */
     public function destroy(Booklist $booklist)
     {
-        //
+        $booklist->delete();
+        return to_route('dashboard');
     }
 }

@@ -96,14 +96,14 @@ export default function Index({ auth, books, queryParams = null }) {
             <div className="booklist-content grid">
               {books.data.map((book) => (
                 <div
-                className="book-item flex flex-column flex-sb"
+                className="book-item hover flex flex-column flex-sb"
                 key={book.id}>
                   <Link href={route('book.show', book.id)}>
                   <div className="book-item-img">
                     <img src={book.image_path} alt="cover" />
                   </div>
                   <div className="book-item-info text-center">
-                    <div className="book-item-info-item title">
+                    <div className="book-item-info-item titles">
                       <span className="tit">{book.name}</span>
                     </div>
                     <div className="book-item-info-item author">
@@ -120,8 +120,8 @@ export default function Index({ auth, books, queryParams = null }) {
                   </Link>
                 </div>
               ))}
-
-            </div><Pagination links={books.meta.links} />
+            </div>
+            <Pagination links={books.meta.links} />
           </div>
         </section>
     </AuthenticatedLayout>
