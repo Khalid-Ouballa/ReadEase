@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Booklist;
+use App\Models\Book;
 use App\Http\Requests\StoreBooklistRequest;
 use App\Http\Requests\UpdateBooklistRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Book;
 use Inertia\Inertia;
 
 class BooklistController extends Controller
@@ -37,17 +38,20 @@ class BooklistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBooklistRequest $request)
+    public function store(Book $book)
     {
-        $data = $request->validated();
 
-        $data['user_id'] = Auth::id();
-        $data['book_id'] = 1;
-        $data['status'] = "not_started";
-        $data['progress'] = 0;
-        Booklist::create($data);
+        $user = Auth::user();
 
-        return route('book.index');
+        if ($user->booklists()->where('book_id', $book->id)->exists()) {
+            return redirect()->back()->with('message', 'Book already in the list.');
+        }
+        $user->booklists()->create([
+            'book_id' => $book->id,
+            'status' => 'not_started',
+            'progress' => 0,
+        ]);
+        return redirect()->back()->with('message', 'Book added successfully to your Not Started Books list');
     }
 
     /**
@@ -55,20 +59,21 @@ class BooklistController extends Controller
      */
     public function show(Booklist $booklist)
     {
-        $usersWithReadBooksCount = User::select( 'users.name',
-        DB::raw('COUNT(booklists.book_id) as books_read'),
-        DB::raw('SUM(booklists.progress) as total_pages_read')
+        $usersWithReadBooksCount = User::select(
+            'users.name',
+            DB::raw('COUNT(booklists.book_id) as books_read'),
+            DB::raw('SUM(booklists.progress) as total_pages_read')
         )
-        ->leftJoin('booklists', 'users.id', '=', 'booklists.user_id')
-        ->where('booklists.status', 'completed')
-        ->groupBy( 'users.name')
-        ->orderByDesc('total_pages_read')
-        ->orderByDesc('books_read')
-        ->get();
+            ->leftJoin('booklists', 'users.id', '=', 'booklists.user_id')
+            ->where('booklists.status', 'completed')
+            ->groupBy('users.name')
+            ->orderByDesc('total_pages_read')
+            ->orderByDesc('books_read')
+            ->get();
 
-    return Inertia::render('LeaderBoard', [
-    'usersWithReadBooksCount' =>  $usersWithReadBooksCount
-    ]);
+        return Inertia::render('LeaderBoard', [
+            'usersWithReadBooksCount' => $usersWithReadBooksCount
+        ]);
     }
 
     /**
@@ -90,9 +95,12 @@ class BooklistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Booklist $booklist)
+    public function destroy(Book $book)
     {
-        $booklist->delete();
-        return to_route('dashboard');
+        $user = Auth::user();
+
+        $user->booklists()->where('book_id', $book->id)->delete();
+        return redirect()->back()->with('message', 'Book removed successfully from your list.');
     }
 }
+

@@ -30,9 +30,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('leaderBoard');
     Route::resource('book', BookController::class);
     Route::resource('booklist', BooklistController::class);
-    Route::delete('/dashboard/{id}', [BooklistController::class, 'destroy'])->name('booklist.destroy');
     Route::resource('user', UserController::class);
+    Route::delete('/booklist/destroy/{book}', [BooklistController::class, 'destroy'])
+    ->name('booklist.destroy');
+    Route::post('/booklist/store/{book}', [BooklistController::class, 'store'])
+    ->name('booklist.store');
 });
+
 
 
 Route::middleware('auth')->group(function () {

@@ -159,11 +159,7 @@ class DashboardController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy()
     {
-        $booklist = Booklist::where('book_id', $id)->firstOrFail();
-        $booklist->delete();
-
-        return redirect()->route('dashboard');
     }
 }

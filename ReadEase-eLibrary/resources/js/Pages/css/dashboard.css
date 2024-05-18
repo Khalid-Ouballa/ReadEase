@@ -6,10 +6,10 @@
 
 .card {
     padding: 19px;
-    border: 1px solid hsl(230, 62%, 56%);
+    border: 1px solid hsl(230deg 62% 56%);
     text-align: center;
     border-radius: 8px;
-    background-color: hsl(230deg 100% 96.62%);
+    background-color: hsl(230deg 100% 98.66%);
 }
 
 .cardTitle {

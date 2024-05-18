@@ -2,6 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "@/Pages/css/dashboard.css";
 import { Head } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Dashboard({
   auth,
@@ -13,18 +14,14 @@ export default function Dashboard({
   notStartedBooksData,
   inProgressBooksData,
 }) {
-  const deleteBooklist = (id) => {
-    if (confirm("Are you sure you want to delete this booklist?")) {
-      axios
-        .delete(`/dashboard/${id}`)
-        .then(() => {
-          // Handle success, such as refreshing the page or updating state
-        })
-        .catch((error) => {
-          // Handle error
-        });
+
+  const removeBook = (bookId) => {
+    const confirmed = window.confirm('Are you sure you want to remove this book?');
+    if (confirmed) {
+      Inertia.delete(route("booklist.destroy", bookId));
     }
   };
+
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -95,9 +92,7 @@ export default function Dashboard({
                   </div>
                   <div>
                     <button className="dashButton readButton">Read</button>
-                      <button className="dashButton removeButton"
-                      onClick={(e) => deleteBooklist(book.id)}
-                      >Remove</button>
+                      <button className="dashButton removeButton" onClick={() => removeBook(book.id)}>Remove</button>
                   </div>
                 </div>
               ))
@@ -151,7 +146,7 @@ export default function Dashboard({
                   </div>
                   <div>
                     <button className="dashButton readButton">Read</button>
-                    <button className="dashButton removeButton">Remove</button>
+                    <button className="dashButton removeButton" onClick={() => removeBook(book.id)}>Remove</button>
                   </div>
                 </div>
               ))
@@ -205,7 +200,7 @@ export default function Dashboard({
                   </div>
                   <div>
                     <button className="dashButton readButton">Read</button>
-                    <button className="dashButton removeButton">Remove</button>
+                    <button className="dashButton removeButton" onClick={() => removeBook(book.id)}>Remove</button>
                   </div>
                 </div>
               ))
