@@ -53,7 +53,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Stephen King</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -63,7 +63,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Dick Francis</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -73,7 +73,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Peter Cawdron</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -83,7 +83,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Lucy Crehan</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -93,7 +93,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Victoria Aveyard</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -103,7 +103,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Sara Taylor</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -113,7 +113,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Mesha Maren</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -123,7 +123,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Megan Campisi</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -133,7 +133,7 @@ function Featured() {
                     <div className="book__author">
                       <span className="author">Lois Lowry</span>
                     </div>
-                    <button>Add to List</button>
+                    <a href="http://127.0.0.1:8000/register"><button>Add to List</button></a>
                   </article>
                 </SwiperSlide>
               </Swiper>

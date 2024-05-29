@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "@/Pages/css/dashboard.css";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 import { Inertia } from "@inertiajs/inertia";
 
@@ -91,7 +91,9 @@ export default function Dashboard({
                     </div>
                   </div>
                   <div>
+                  <Link href={route('book.show2', book.id)}>
                     <button className="dashButton readButton">Read</button>
+                  </Link>
                       <button className="dashButton removeButton" onClick={() => removeBook(book.id)}>Remove</button>
                   </div>
                 </div>
@@ -145,7 +147,9 @@ export default function Dashboard({
                     </div>
                   </div>
                   <div>
+                  <Link href={route('book.show2', book.id)}>
                     <button className="dashButton readButton">Read</button>
+                  </Link>
                     <button className="dashButton removeButton" onClick={() => removeBook(book.id)}>Remove</button>
                   </div>
                 </div>
@@ -199,7 +203,9 @@ export default function Dashboard({
                     </div>
                   </div>
                   <div>
+                  <Link href={route('book.show2', book.id)}>
                     <button className="dashButton readButton">Read</button>
+                  </Link>
                     <button className="dashButton removeButton" onClick={() => removeBook(book.id)}>Remove</button>
                   </div>
                 </div>

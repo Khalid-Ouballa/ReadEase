@@ -6,6 +6,8 @@ use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -63,6 +65,21 @@ class BookController extends Controller
     {
         return inertia('Book/Show', [
             'book' => new BookResource($book),
+        ]);
+    }
+
+    public function show2(Book $book)
+    {
+        $user = Auth::user();
+
+        $userProgress = DB::table('booklists')
+        ->where('user_id', $user->id)
+        ->where('book_id', $book->id)
+        ->value('progress');
+
+        return inertia('Book/Read', [
+            'book' => new BookResource($book),
+            'userProgress' => $userProgress,
         ]);
     }
     /**

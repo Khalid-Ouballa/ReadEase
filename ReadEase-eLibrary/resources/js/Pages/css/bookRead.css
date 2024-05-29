@@ -1,0 +1,180 @@
+.linkDiv {
+    padding: 0 0 16px 0;
+    letter-spacing: 1.5px;
+}
+
+.linkDiv i:hover {
+    color: hsl(230, 62%, 56%);
+}
+
+.linkDiv i::before {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+@media screen and (min-width: 1023px) {
+    .linkDiv {
+        padding: 0 0 16px 20px;
+    }
+}
+
+.bookPdf {
+    width: 100%;
+    height: 700px;
+}
+
+.readSession {
+    padding: 30px 0;
+}
+
+.progressSection {
+    text-align: center;
+}
+
+.readTitle {
+    font-size: 27px;
+    font-weight: 600;
+    padding: 0 0 33px;
+    text-align: center;
+    color: hsl(230, 70%, 16%);
+}
+
+.progressSection .progressParagraph {
+    font-size: 17px;
+}
+
+.progressSection .progressParagraph span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2563eb;
+}
+
+.progressForm {
+    padding: 20px 0;
+}
+
+.progressForm label {
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+.readInput {
+    border: 1px solid hsl(230, 62%, 56%);
+    border-radius: 25px;
+    color: hsl(230, 62%, 56%);
+    padding: 8px;
+}
+
+.readInput::placeholder {
+    color: hsl(230, 16%, 45%);
+}
+
+.readButton {
+    color: var(--white-color);
+    background-color: var(--first-color);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px;
+    border-radius: 35px;
+    transition: box-shadow 0.4s;
+    margin-top: 8px;
+}
+
+.progressForm button:hover {
+    opacity: 0.8;
+}
+
+/* Timer */
+
+.readSession {
+    text-align: center;
+}
+
+.readSession .readPara {
+    padding-bottom: 7px;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.readSession .startRead {
+    margin-left: 4px;
+}
+
+.readSession .durations {
+    padding-bottom: 12px;
+}
+
+.readSession .durations button {
+    line-height: 0.7;
+    color: white;
+    font-weight: 600;
+    margin-right: 16px;
+    font-size: 19px;
+    padding: 11px;
+    width: 50px;
+    height: 50px;
+    border-radius: 36px;
+    background-color: hsl(230, 62%, 56%);
+}
+
+.readSession .durations button span {
+    font-size: 10px;
+    color: #dee2e6;
+}
+
+.preferTime {
+    padding-bottom: 12px;
+}
+
+.timeLabel {
+    padding-right: 8px;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+}
+
+.prefRead {
+    width: 271px;
+}
+
+.timer p {
+    text-align: center;
+    padding-bottom: 19px;
+    line-height: 23px;
+    width: 115px;
+    height: 115px;
+    border: 2px solid hsl(230, 62%, 56%);
+    border-radius: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+.timer .firstSpan {
+    font-size: 12px;
+    color: #6b7280;
+}
+.timer .secondSpan {
+    font-size: 29px;
+    font-weight: 500;
+    color: hsl(230, 62%, 56%);
+}
+
+.timerIcons {
+    display: flex;
+    justify-content: center;
+    gap: 38px;
+}
+
+.timerIcons .icon {
+    color: hsl(230, 62%, 56%);
+    font-size: 32px;
+}

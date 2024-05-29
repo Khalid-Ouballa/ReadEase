@@ -8,9 +8,9 @@ a:hover {
 }
 
  .blogs {
-	padding: 60px 0;
+    padding: 0 0 60px;
     overflow: hidden;
-    
+
 }
 .blogs .container h2 {
 	padding-top: -3vmin;
@@ -158,7 +158,7 @@ a:hover {
 
 
 
-   
+
 /* screen size 1024px */
 @media only screen and (width: 1024px) {
 
@@ -168,6 +168,6 @@ a:hover {
 
 /* screen size 768px */
 @media only screen and (width: 768px) {
-	
-	
-}   
+
+
+}

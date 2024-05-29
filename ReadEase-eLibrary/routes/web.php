@@ -26,15 +26,24 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-    Route::get('/LeaderBoard', [BooklistController::class, 'show'])
-        ->name('leaderBoard');
+    Route::get('/dashboard/read/{book}', [BookController::class, 'show2'])
+        ->name('book.show2');
+
+    Route::get('/Leaderboard', [BooklistController::class, 'index'])
+        ->name('leaderboard.index');
+
+
     Route::resource('book', BookController::class);
     Route::resource('booklist', BooklistController::class);
     Route::resource('user', UserController::class);
+
     Route::delete('/booklist/destroy/{book}', [BooklistController::class, 'destroy'])
-    ->name('booklist.destroy');
+        ->name('booklist.destroy');
     Route::post('/booklist/store/{book}', [BooklistController::class, 'store'])
-    ->name('booklist.store');
+        ->name('booklist.store');
+    Route::put('/booklist/{book}/update', [BooklistController::class, 'update'])
+        ->name('booklist.update')
+        ->middleware('auth');
 });
 
 

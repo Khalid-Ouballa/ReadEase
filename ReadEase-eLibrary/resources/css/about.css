@@ -3,20 +3,13 @@
   width: 101%;
   display: block;
   margin: 0 auto;
-  margin-top: -4rem; 
-  
+  margin-top: -4rem;
+
 }
 
 .about-section .col-md-5 p {
   font-size: var(  --small-font-size);
   color: var( --text-color);
-}
-.about-section .container h2 {
-  padding-top: 14vmin;
-}
-
-.about-section  {
-  padding-bottom: 14vmin;
 }
 
 /* ---------------------------------Media----------------------------- */
@@ -28,9 +21,9 @@
 
 @media (max-width: 425px) {
   .about-section .col-md-7 .about-image {
-    width: 105%; 
+    width: 105%;
    display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
   }
 }
 

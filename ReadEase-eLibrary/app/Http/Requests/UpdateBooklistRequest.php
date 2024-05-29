@@ -11,7 +11,7 @@ class UpdateBooklistRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class UpdateBooklistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'progress' => 'required|integer|min:1',
         ];
     }
 }

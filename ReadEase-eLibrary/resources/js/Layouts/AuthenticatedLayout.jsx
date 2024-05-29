@@ -30,17 +30,18 @@ export default function Authenticated({ user, header, children }) {
                   Dashboard
                 </NavLink>
                 <NavLink
-                  href={route("leaderBoard")}
-                  active={route().current("leaderBoard")}
-                >
-                  LeaderBoard
-                </NavLink>
-                <NavLink
                   href={route("book.index")}
                   active={route().current("book.index")}
                 >
                   Books
                 </NavLink>
+                <NavLink
+                  href={route('leaderboard.index')}
+                  active={route().current("leaderboard.index")}
+                >
+                  LeaderBoard
+                </NavLink>
+
               </div>
             </div>
 
@@ -87,7 +88,7 @@ export default function Authenticated({ user, header, children }) {
               </div>
             </div>
 
-            <div className="-me-2 flex items-center sm:hidden">
+            <div className="-me-2 items-center sm:hidden">
               <button
                 onClick={() =>
                   setShowingNavigationDropdown(
@@ -137,6 +138,18 @@ export default function Authenticated({ user, header, children }) {
               active={route().current("dashboard")}
             >
               Dashboard
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              href={route("book.index")}
+              active={route().current("book.index")}
+            >
+              Books
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              href={route('leaderboard.index')}
+              active={route().current("leaderboard.index")}
+            >
+              LeaderBoard
             </ResponsiveNavLink>
           </div>
 
