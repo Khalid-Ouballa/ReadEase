@@ -17,10 +17,32 @@ class BooklistController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // BooklistController.php
+
+    // BooklistController.php
+
     public function index()
     {
-        //
+        $leaderboard = DB::table('booklists')
+            ->join('users', 'booklists.user_id', '=', 'users.id')
+            ->select(
+                'users.id',
+                'users.name',
+                DB::raw('SUM(booklists.progress) as total_pages_read'),
+                DB::raw('COUNT(DISTINCT CASE WHEN booklists.status = "completed" THEN booklists.book_id END) as books_completed')
+            )
+            ->groupBy('users.id', 'users.name')
+            ->orderByDesc('total_pages_read')
+            ->orderByDesc('books_completed')
+            ->paginate(10)->onEachSide(1);
+
+        return Inertia::render('LeaderBoard', [
+            'usersWithReadBooksCount' => $leaderboard,
+        ]);
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -59,21 +81,7 @@ class BooklistController extends Controller
      */
     public function show(Booklist $booklist)
     {
-        $usersWithReadBooksCount = User::select(
-            'users.name',
-            DB::raw('COUNT(booklists.book_id) as books_read'),
-            DB::raw('SUM(booklists.progress) as total_pages_read')
-        )
-            ->leftJoin('booklists', 'users.id', '=', 'booklists.user_id')
-            ->where('booklists.status', 'completed')
-            ->groupBy('users.name')
-            ->orderByDesc('total_pages_read')
-            ->orderByDesc('books_read')
-            ->get();
-
-        return Inertia::render('LeaderBoard', [
-            'usersWithReadBooksCount' => $usersWithReadBooksCount
-        ]);
+        //
     }
 
     /**
@@ -87,11 +95,35 @@ class BooklistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBooklistRequest $request, Booklist $booklist)
+    public function update(UpdateBooklistRequest $request, Book $book)
     {
-        //
-    }
+        $user = Auth::user();
+        $nbPage = $book->number_of_pages;
 
+        // Validate the request data
+        $request->validate([
+            'progress' => 'required|integer|min:1',
+        ]);
+
+        DB::table('booklists')
+            ->where('user_id', $user->id)
+            ->where('book_id', $book->id)
+            ->update(['progress' => $request->progress]);
+
+        DB::table('booklists')
+            ->where('user_id', $user->id)
+            ->where('book_id', $book->id)
+            ->where('progress', '>', 0)
+            ->update(['status' => 'in_progress']);
+
+        DB::table('booklists')
+            ->where('user_id', $user->id)
+            ->where('book_id', $book->id)
+            ->where('progress', '>', $nbPage)
+            ->update(['status' => 'completed']);
+
+        return to_route('dashboard')->with('status', 'Progress updated successfully!');
+    }
     /**
      * Remove the specified resource from storage.
      */
@@ -100,7 +132,7 @@ class BooklistController extends Controller
         $user = Auth::user();
 
         $user->booklists()->where('book_id', $book->id)->delete();
-        return redirect()->back()->with('message', 'Book removed successfully from your list.');
+        return to_route('dashboard');
     }
 }
 

@@ -9,20 +9,20 @@ import { Head } from "@inertiajs/react";
 
 function Homepage() {
   return (
-  
-      
+
+
     <>
       <Head title="Homepage" />
-      <Home/> 
+      <Home/>
     <About />
     <Featured/>
     <Opinions/>
-   <Blogs/> 
-   <Footer/> 
-  
+   <Blogs/>
+   <Footer/>
+
   </>
-     
-             
+
+
   );
 }
 export default Homepage;
